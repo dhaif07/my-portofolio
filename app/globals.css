@@ -1,0 +1,428 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --color-bg: #050505;
+  --color-card: #111111;
+  --color-surface: #191919;
+  --color-border: #262626;
+  --color-primary: #ffffff;
+  --color-secondary: #A5A5A5;
+  --color-accent: #00E5FF;
+  --color-success: #00FF99;
+  --color-warning: #FFC857;
+  --color-danger: #FF5D73;
+
+  --radius-btn: 16px;
+  --radius-card: 22px;
+  --radius-img: 24px;
+  --radius-input: 16px;
+  --radius-badge: 999px;
+  --radius-modal: 28px;
+
+  --font-satoshi: 'Space Grotesk', system-ui, sans-serif;
+  --font-clash: 'Syne', system-ui, sans-serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+
+  --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-normal: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --noise-opacity: 0.02;
+}
+
+/* ============================================
+   BASE RESET & DEFAULTS
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles this */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(0, 229, 255, 0.2);
+  color: var(--color-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Images */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-clash);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+}
+
+p {
+  font-family: var(--font-inter);
+  line-height: 1.7;
+  color: var(--color-secondary);
+}
+
+/* ============================================
+   NOISE TEXTURE OVERLAY
+   ============================================ */
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITIES
+   ============================================ */
+.glass {
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-light {
+  background: rgba(24, 24, 24, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-card);
+}
+
+/* ============================================
+   GRADIENT UTILITIES
+   ============================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #fff 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-success));
+}
+
+.glow-accent {
+  box-shadow: 0 0 40px rgba(0, 229, 255, 0.15), 0 0 80px rgba(0, 229, 255, 0.05);
+}
+
+.glow-text-accent {
+  text-shadow: 0 0 40px rgba(0, 229, 255, 0.4);
+}
+
+/* ============================================
+   SECTION LAYOUT
+   ============================================ */
+.section {
+  padding: 80px 0;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 120px 0;
+  }
+}
+
+.section-sm {
+  padding: 60px 0;
+}
+
+@media (min-width: 768px) {
+  .section-sm {
+    padding: 80px 0;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px; /* Mobile */
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 32px; /* Tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 48px; /* Desktop */
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/* ============================================
+   CURSOR
+   ============================================ */
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  z-index: 10000;
+  mix-blend-mode: difference;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ============================================
+   INTERACTIVE STATES
+   ============================================ */
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   SCROLL PROGRESS BAR
+   ============================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-success));
+  z-index: 9998;
+  transform-origin: left;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-accent),
+    var(--color-border),
+    transparent
+  );
+}
+
+/* ============================================
+   THREE.JS CANVAS
+   ============================================ */
+.three-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
+}
+
+/* ============================================
+   CARD HOVER BORDER GLOW
+   ============================================ */
+.card-glow-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, var(--color-accent), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.card-glow-border:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   MARQUEE
+   ============================================ */
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track-reverse {
+  animation: marquee-reverse 30s linear infinite;
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
