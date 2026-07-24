@@ -44,7 +44,6 @@ export function ContactInfo() {
   const socialLinks = [
     { name: 'linkedin', url: siteConfig.socials.linkedin, icon: Linkedin },
     { name: 'instagram', url: siteConfig.socials.instagram, icon: Instagram },
-    { name: 'whatsapp', url: siteConfig.socials.whatsapp, icon: Phone },
   ];
 
   return (
