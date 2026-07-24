@@ -32,14 +32,6 @@ export function ContactInfo() {
       color: 'text-accent',
     },
     {
-      icon: Phone,
-      title: 'WhatsApp',
-      value: siteConfig.phone,
-      href: siteConfig.socials.whatsapp,
-      copyable: true,
-      color: 'text-success',
-    },
-    {
       icon: MapPin,
       title: 'Location',
       value: siteConfig.location,
@@ -71,10 +63,7 @@ export function ContactInfo() {
         {contactItems.map((item) => (
           <div
             key={item.title}
-            className={cn(
-              "glass-card p-5 flex flex-col gap-3 group relative overflow-hidden",
-              item.title === 'Location' ? "sm:col-span-2" : ""
-            )}
+            className="glass-card p-5 flex flex-col gap-3 group relative overflow-hidden"
           >
             {/* Hover Glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

@@ -6,8 +6,7 @@ export const siteConfig = {
     'Saya seorang mahasiswa Teknik Informatika yang memiliki minat dalam pengembangan website modern, responsif, dan mudah digunakan. Saya senang mempelajari teknologi baru serta terus mengembangkan kemampuan melalui berbagai project nyata.',
   url: 'https://portfolio.dev',
   email: 'dhaifmuharram@gmail.com',
-  phone: '+62 852-xxxx-xxxx',
-  location: 'Bintaro, Indonesia',
+  location: 'Bintaro, Tangerang Selatan',
   availableForWork: true,
   socials: {
     github: '#',
